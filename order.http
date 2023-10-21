@@ -1,4 +1,4 @@
-@baseUrl = https://green-poncho.cyclic.app/
+@baseUrl = https://amused-parka-lamb.cyclic.app/
 
 ### GET ALL
 GET {{baseUrl}}/order
