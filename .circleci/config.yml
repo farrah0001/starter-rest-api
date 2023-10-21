@@ -20,6 +20,7 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install jest
           command: npm install jest-junit
       - run:
           name: Run unit tests
@@ -30,6 +31,7 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install eslint
           command: npm install eslint
       - run:
           name: Run lint
