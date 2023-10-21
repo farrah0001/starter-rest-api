@@ -1,0 +1,84 @@
+# CircleCI configuration file
+# This config was automatically generated from your source code
+# Stacks detected: deps:node:.,test:jest:
+version: 2.1
+orbs:
+  node: circleci/node@5
+  jq: circleci/jq@3.0.0
+jobs:
+  build:
+    # Build the application
+    executor: node/default
+    steps:
+      - checkout
+      - run:
+          name: Check current version of node
+          command: node -v
+  unit-test-node:
+    # Install node dependencies and run unit tests
+    executor: node/default
+    steps:
+      - checkout
+      - run:
+          command: npm install jest-junit
+      - run:
+          name: Run unit tests
+          command: npm run unit-test
+  lint-node:
+    # Install node dependencies and run lint
+    executor: node/default
+    steps:
+      - checkout
+      - run:
+          command: npm install eslint
+      - run:
+          name: Run lint
+          command: npm run lint
+  release:
+    # Release/Deliver the application
+    executor: node/default
+    steps:
+      - checkout
+      - run:
+          name: release
+          command: 'bash ./.circleci/release.sh'
+  integration-test-node:
+    # Run integratoin tests
+    executor: node/default
+    steps:
+      - checkout
+      - run:
+          name: Run integration tests
+          command: 'bash ./.circleci/integration_test.sh'
+workflows:
+  build-and-test:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - develop
+      - unit-test-node:
+          filters:
+            branches:
+              only:
+                - develop
+      - lint-node:
+          filters:
+            branches:
+              only:
+                - develop
+      - release:
+          requires:
+            - build
+            - unit-test-node
+            - lint-node
+          filters:
+            branches:
+              only:
+                - develop
+      - integration-test-node:
+          filters:
+            branches:
+              only:
+                - main

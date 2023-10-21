@@ -1,34 +1,21 @@
-# Starter REST Api
+# Thesis
+Evaluating CI/CD Patterns for Serverless Applications
 
-This is an example REST Api designed to be deployed on Cyclic.sh
+# Thesis Organization
+The thesis works together on the basis of the following three important pillars:
 
-[![Deploy to Cyclic](https://deploy.cyclic.app/button.svg)](https://deploy.cyclic.app/)
+- Serverless Application (AWS) Code on GitHub:
+https://github.com/FarrahZakir/thesis
 
+- CI/CD Pipeline Using CircleCI:
+https://app.circleci.com/pipelines/github/FarrahZakir/thesis
 
-## Examples
+- Serverless Deployment Using Cyclic:
+https://thesis.cyclic.app
 
-### Create/Update - Insert/Upsert
+# Reference
+This application code is based on the sample application "Starter REST Api" available from Cyclic at: https://github.com/cyclic-software/starter-rest-api  
 
-```shell
-curl -i https://localhost:3000/animals/rin%20tin%20tin \
-    --data '{"breed":"German Shepard", "gender": "male"}' \
-    -XPOST -H 'Content-Type: application/json'
-```
+The CircleCI configuration file is based on the project-specific auto-generated configuration file from CircleCI.  
 
-### Read All - List
-
-```shell
-curl -i https://localhost:3000/animals
-```
-
-### Read
-
-```shell
-curl -i https://localhost:3000/animals/lassy
-```
-
-### Delete
-
-```shell
-curl -i -XDELETE https://localhost:3000/animals/lassy
-```
+a
